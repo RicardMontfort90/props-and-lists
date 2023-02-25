@@ -6,11 +6,17 @@ import Card from './components/Card';
 function App() {
   const [animals, setAnimals] = useState(animalData);
 
+  const handleSortByLife = () => {
+    const ordered = [...animals].sort((a, b) => a.lifeExpectancy - b.lifeExpectancy)
+    setAnimals(ordered);
+  }
+
   return (
     <div className="App">
       <h1>Adopt me plz 🐾</h1>
-      {animals.map (elem => {
-        return <Card key={elem._id} animals={elem}/>
+      <button onClick={handleSortByLife} className='action-btn'>Sort by life expectancy</button>
+      {animals.map(elem => {
+        return <Card key={elem._id} animal={elem}/>
       })}
     </div>
   );
